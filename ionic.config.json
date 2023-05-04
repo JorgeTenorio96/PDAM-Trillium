@@ -1,0 +1,7 @@
+{
+  "name": "Trillium",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
