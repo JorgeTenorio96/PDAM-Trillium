@@ -9,6 +9,7 @@ import { PostsPageRoutingModule } from './posts-routing.module';
 import { PostsPage } from './posts.page';
 import { AppModule } from 'src/app/app.module';
 import { SharedComponentModule } from 'src/app/sharedcomponent.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { SharedComponentModule } from 'src/app/sharedcomponent.module';
     FormsModule,
     IonicModule,
     PostsPageRoutingModule,
-    SharedComponentModule
+    SharedComponentModule,
   ],
   declarations: [PostsPage],
 })

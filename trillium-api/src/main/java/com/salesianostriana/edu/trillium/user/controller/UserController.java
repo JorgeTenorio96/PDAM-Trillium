@@ -117,7 +117,6 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(JwtUserResponse.of(user, token, refreshToken.getToken()));
 
-
     }
     @Operation(summary = "Refresca el token")
     @ApiResponses(value = {
