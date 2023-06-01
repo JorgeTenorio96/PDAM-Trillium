@@ -8,6 +8,8 @@ import { RegisterPageRoutingModule } from './register-routing.module';
 
 import { RegisterPage } from './register.page';
 import { SharedComponentModule } from 'src/app/sharedcomponent.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -16,6 +18,8 @@ import { SharedComponentModule } from 'src/app/sharedcomponent.module';
     IonicModule,
     RegisterPageRoutingModule,
     SharedComponentModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
   declarations: [RegisterPage]
 })
