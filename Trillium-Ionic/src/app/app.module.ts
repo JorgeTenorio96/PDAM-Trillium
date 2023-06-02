@@ -9,10 +9,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { PostCardComponent } from './components/post-card/post-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, SharedComponentModule, HttpClientModule, ReactiveFormsModule,],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    FormsModule,
+    SharedComponentModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    IonicStorageModule.forRoot(),
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

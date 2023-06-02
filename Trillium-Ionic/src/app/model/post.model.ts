@@ -5,3 +5,4 @@ export interface Post {
   likes: any[];
   comments: any[];
 }
+

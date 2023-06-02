@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from 'src/app/model/post.model';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-post-card',
@@ -11,8 +12,10 @@ export class PostCardComponent  implements OnInit {
 
   @Input() post!: Post;
 
-  constructor() { }
+  constructor(private postService: PostService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.postService.getPosts();
+  }
 
 }

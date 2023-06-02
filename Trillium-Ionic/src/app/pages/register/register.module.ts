@@ -18,8 +18,6 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule,
     RegisterPageRoutingModule,
     SharedComponentModule,
-    AppRoutingModule,
-    HttpClientModule
   ],
   declarations: [RegisterPage]
 })
