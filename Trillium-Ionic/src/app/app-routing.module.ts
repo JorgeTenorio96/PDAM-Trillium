@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PostDetailsComponent } from './components/post-details/post-details.component';
 
 const routes: Routes = [
   {
@@ -18,10 +19,12 @@ const routes: Routes = [
   {
     path: 'posts',
     loadChildren: () => import('./pages/posts/posts.module').then( m => m.PostsPageModule)
-  },  {
+  },
+  {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
-  }
+  },
+  { path: 'post-details/:id', component: PostDetailsComponent },
 
 ];
 

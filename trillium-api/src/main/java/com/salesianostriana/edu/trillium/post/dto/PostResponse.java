@@ -24,6 +24,8 @@ public class PostResponse {
 
     private Long id;
 
+    private String author;
+
     @NotEmpty
     private String title;
 
@@ -39,6 +41,7 @@ public class PostResponse {
     public static PostResponse toPostResponse(Post post){
         return PostResponse.builder()
                 .id(post.getId())
+                .author(post.getAuthor().getUsername())
                 .title(post.getTitle())
                 .image(post.getImage())
                 .likes(post.getLikes().stream().map(UserResponse::fromUser).collect(Collectors.toSet()))

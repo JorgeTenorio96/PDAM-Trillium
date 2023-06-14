@@ -8,15 +8,8 @@ import { Post } from "../model/post.model";
 })
 export class PostService {
 
-  constructor(private http: HttpClient, private storage: Storage) { }
+  constructor(private http: HttpClient) { }
 
-  /*this.storage
-    .get('authToken')
-    .then((authToken) => {
-      const headers = new HttpHeaders().set('Authorization', 'Bearer ' + authToken);
-      this.postService.getPosts().subscribe(response => {
-        this.posts = response
-      })*/
       getPosts(headers?: HttpHeaders): Observable<Post[]> {
         const options = { headers };
         return this.http.get<Post[]>('http://localhost:8080/post', options);

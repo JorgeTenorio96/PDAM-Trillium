@@ -1,8 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from 'src/app/model/post.model';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Storage } from "@ionic/storage";
+import { Router } from '@angular/router';
+
+interface PostResponse {
+  content: Post[];
+  totalElements: number;
+  totalPages: number;
+  page: number;
+}
 
 @Component({
   selector: 'app-posts',
@@ -10,30 +18,14 @@ import { Storage } from "@ionic/storage";
   styleUrls: ['./posts.page.scss'],
 })
 export class PostsPage implements OnInit {
-
+  @Input() post!: Post;
   posts: Post[] = [];
 
-  constructor(private http: HttpClient, private storage: Storage, ) {}
+  constructor(private http: HttpClient, private storage: Storage, private router: Router) {}
 
   ngOnInit() {
     this.ionViewDidEnter();
   }
-
-  /*getPosts() {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ');
-
-    this.http.get<Post[]>('http://localhost:8080/post', { headers })
-    .pipe(
-      tap((response) => {
-        this.posts = response;
-      }),
-      catchError((error) => {
-        console.error('Error al obtener los posts:', error);
-        return error;
-      })
-    )
-    .subscribe();
-  }*/
 
   ionViewDidEnter() {
     this.storage
@@ -42,11 +34,11 @@ export class PostsPage implements OnInit {
         const headers = new HttpHeaders().set('Authorization', 'Bearer ' + authToken);
 
         this.http
-          .get<Post[]>('http://localhost:8080/post/', { headers })
+          .get<PostResponse>('http://localhost:8080/post/', { headers })
           .subscribe({
             next: (response) => {
-              this.posts = response;
-              console.log(this.posts)
+              this.posts = response.content; // Asigna el array "content" de la respuesta a "posts"
+              console.log(this.posts);
             },
             error: (error) => {
               console.error('Error al obtener los posts:', error);
@@ -57,4 +49,9 @@ export class PostsPage implements OnInit {
         console.error('Error al obtener el token:', error);
       });
   }
+
+  viewPostDetails(postId: number) {
+    this.router.navigate(['/post-details', postId]);
+  }
+
 }

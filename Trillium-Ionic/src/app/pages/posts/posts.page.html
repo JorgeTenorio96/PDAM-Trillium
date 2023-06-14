@@ -3,12 +3,14 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Posts</ion-title>
+    <ion-title>Your Timeline</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ng-container *ngFor="let post of posts">
-    <app-post-card></app-post-card>
+  <ng-container *ngIf="posts">
+    <ng-container *ngFor="let post of posts">
+      <app-post-card [post]="post" (click)="viewPostDetails(post.id)"></app-post-card>
+    </ng-container>
   </ng-container>
 </ion-content>
