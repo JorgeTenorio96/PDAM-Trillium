@@ -1,0 +1,37 @@
+<ion-content class="ion-padding">
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Username</ion-label>
+        <ion-input type="text" name="username" [(ngModel)]="username" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" name="password" [(ngModel)]="password" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Verify Password</ion-label>
+        <ion-input type="password" name="verifyPassword" [(ngModel)]="verifyPassword" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Full Name</ion-label>
+        <ion-input type="text" name="fullName" [(ngModel)]="fullName" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" name="email" [(ngModel)]="email" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Verify Email</ion-label>
+        <ion-input type="email" name="verifyEmail" [(ngModel)]="verifyEmail" required></ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="ion-padding">
+      <ion-button type="submit" expand="block">Register</ion-button>
+    </div>
+    <div class="register" position="center">
+      <a routerLink="/login">Already have an account? Login</a>
+    </div>
+  </form>
+</ion-content>
+
