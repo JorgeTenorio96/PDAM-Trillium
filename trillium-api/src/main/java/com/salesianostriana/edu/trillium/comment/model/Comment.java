@@ -22,7 +22,7 @@ public class Comment {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY )
+    @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name = "post_id")
     @JsonIgnore
     private Post post;

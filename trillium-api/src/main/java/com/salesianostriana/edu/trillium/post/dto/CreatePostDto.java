@@ -17,6 +17,8 @@ public class CreatePostDto {
 
     private String title;
 
+    private String desc;
+
     private String image;
 
     private Set<UserResponse> likes = new HashSet<>();

@@ -61,7 +61,7 @@ public class User implements UserDetails {
 
     private String email;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Post> likes = new HashSet<>();
 
     @Builder.Default

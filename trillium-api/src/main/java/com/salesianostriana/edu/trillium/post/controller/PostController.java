@@ -56,7 +56,20 @@ public class PostController {
 
         return result;
     }
-
+    @Operation(summary = "Este método publica un post")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Se ha publicado el post",
+                    content = {@Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = PostResponse.class)),
+                            examples = @ExampleObject(value = """
+                             
+                                    """
+                            ))}),
+            @ApiResponse(responseCode = "404",
+                    description = "No se ha encontrado ningun post",
+                    content = @Content),
+    })
     @PostMapping("/")
     public ResponseEntity<PostResponse> create(
             @RequestPart("file") MultipartFile file,
@@ -78,6 +91,20 @@ public class PostController {
         return ResponseEntity.created(createdURI).body(postNew);
 
     }
+    @Operation(summary = "Este método le da like a un post")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Se ha dado like al post",
+                    content = {@Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = PostResponse.class)),
+                            examples = @ExampleObject(value = """
+                             
+                                    """
+                            ))}),
+            @ApiResponse(responseCode = "400",
+                    description = "No se ha dado like al post",
+                    content = @Content),
+    })
     @PostMapping("/like/{id}")
     public ResponseEntity<PostResponse> likePost (@PathVariable Long id, @AuthenticationPrincipal User user){
         return ResponseEntity.status(HttpStatus.CREATED).body(PostResponse.toPostResponse(service.liked(id, user)));

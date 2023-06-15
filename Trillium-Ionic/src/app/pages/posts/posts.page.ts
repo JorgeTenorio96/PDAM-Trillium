@@ -38,7 +38,6 @@ export class PostsPage implements OnInit {
           .subscribe({
             next: (response) => {
               this.posts = response.content; // Asigna el array "content" de la respuesta a "posts"
-              console.log(this.posts);
             },
             error: (error) => {
               console.error('Error al obtener los posts:', error);

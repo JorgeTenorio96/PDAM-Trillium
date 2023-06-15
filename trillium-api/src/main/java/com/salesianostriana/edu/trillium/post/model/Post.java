@@ -23,6 +23,8 @@ public class Post {
 
     private String image;
 
+    private String desc;
+
     @ManyToOne()
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_POST_USER"))
     private User author;

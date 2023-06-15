@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @RestController
@@ -118,6 +119,36 @@ public class UserController {
                 .body(JwtUserResponse.of(user, token, refreshToken.getToken()));
 
     }
+    @Operation(summary = "Desloguea un usuario")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201",
+                    description = "Se ha deslogueado un usuario",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = UserResponse.class),
+                            examples = @ExampleObject(value = """
+                                    
+                                    """))}),
+            @ApiResponse(responseCode = "400",
+                    description = "",
+                    content = @Content),
+    })
+    @PostMapping("/auth/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+
+        String authorizationHeader = request.getHeader("Authorization");
+
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+
+            String token = authorizationHeader.substring(7);
+
+            jwtProvider.invalidateToken(token);
+        }
+
+        return ResponseEntity.ok("Logged out successfully");
+    }
+
+
+
     @Operation(summary = "Refresca el token")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201",

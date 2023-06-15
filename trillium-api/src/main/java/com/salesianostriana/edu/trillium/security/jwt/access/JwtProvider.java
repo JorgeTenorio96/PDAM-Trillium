@@ -15,6 +15,8 @@ import javax.crypto.SecretKey;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Log
@@ -24,6 +26,8 @@ public class JwtProvider {
     public static final String TOKEN_TYPE = "JWT";
     public static final String TOKEN_HEADER = "Authorization";
     public static final String TOKEN_PREFIX = "Bearer ";
+
+    private Set<String> invalidTokens = new HashSet<>();
 
     @Value("${jwt.secret}")
     private String jwtSecret;
@@ -82,6 +86,16 @@ public class JwtProvider {
         return UUID.fromString(
                 jwtParser.parseClaimsJws(token).getBody().getSubject()
         );
+    }
+
+    public void invalidateToken(String token) {
+
+        invalidTokens.add(token);
+    }
+
+    public boolean isTokenInvalid(String token) {
+
+        return invalidTokens.contains(token);
     }
 
 
