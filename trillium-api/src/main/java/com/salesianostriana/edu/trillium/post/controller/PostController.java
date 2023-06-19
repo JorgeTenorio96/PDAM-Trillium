@@ -2,6 +2,7 @@ package com.salesianostriana.edu.trillium.post.controller;
 
 import com.salesianostriana.edu.trillium.comment.dto.PageResponse;
 import com.salesianostriana.edu.trillium.post.dto.CreatePostDto;
+import com.salesianostriana.edu.trillium.post.dto.CreatePostDtoResponse;
 import com.salesianostriana.edu.trillium.post.dto.PostResponse;
 import com.salesianostriana.edu.trillium.post.model.Post;
 import com.salesianostriana.edu.trillium.post.service.PostService;
@@ -70,19 +71,19 @@ public class PostController {
                     description = "No se ha encontrado ningun post",
                     content = @Content),
     })
-    @PostMapping("/")
-    public ResponseEntity<PostResponse> create(
+    /*@PostMapping("/")
+    public ResponseEntity<CreatePostDtoResponse> create(
             @RequestPart("file") MultipartFile file,
-            @RequestPart("post") CreatePostDto newPost
+            @RequestPart("post") CreatePostDto newPost,
     ) {
-        PostResponse post = service.save(newPost,file);
+        CreatePostDtoResponse post = service.save(newPost,file,);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(post);
-    }
+    }*/
 
     @PostMapping("/post")
-    public ResponseEntity<PostResponse> newPost(@RequestPart("post")@Valid CreatePostDto createPostDto, @RequestPart("file") MultipartFile file){
-        PostResponse postNew = service.save(createPostDto, file);
+    public ResponseEntity<CreatePostDtoResponse> newPost(@RequestPart("post")@Valid CreatePostDto createPostDto, @RequestPart("file") MultipartFile file, @AuthenticationPrincipal User loggedUser){
+        CreatePostDtoResponse postNew = service.save(createPostDto, file, loggedUser);
 
         URI createdURI = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")

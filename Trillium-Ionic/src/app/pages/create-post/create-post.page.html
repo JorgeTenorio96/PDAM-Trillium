@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>New Post</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Image</ion-label>
+      <input type="file" accept="image/*" (change)="onImageChange($event)" />
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input type="text" [(ngModel)]="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-textarea rows="4" [(ngModel)]="description"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="primary" (click)="createPost()">Create Post</ion-button>
+</ion-content>

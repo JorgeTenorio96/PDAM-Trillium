@@ -26,6 +26,8 @@ public class PostResponse {
 
     private String author;
 
+    private String desc;
+
     @NotEmpty
     private String title;
 
@@ -48,5 +50,6 @@ public class PostResponse {
                 .comments(post.getComment().stream().map(CommentResponse::toComment).toList())
                 .build();
     }
+
 
 }

@@ -53,4 +53,8 @@ export class PostsPage implements OnInit {
     this.router.navigate(['/post-details', postId]);
   }
 
+  goToCreatePost() {
+    this.router.navigate(['/create-post']);
+  }
+
 }

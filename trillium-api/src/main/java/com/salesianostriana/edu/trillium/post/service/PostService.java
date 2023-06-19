@@ -6,6 +6,7 @@ import com.salesianostriana.edu.trillium.comment.model.Comment;
 import com.salesianostriana.edu.trillium.comment.repo.CommentRepository;
 import com.salesianostriana.edu.trillium.files.service.StorageService;
 import com.salesianostriana.edu.trillium.post.dto.CreatePostDto;
+import com.salesianostriana.edu.trillium.post.dto.CreatePostDtoResponse;
 import com.salesianostriana.edu.trillium.post.dto.PostResponse;
 import com.salesianostriana.edu.trillium.post.model.Post;
 import com.salesianostriana.edu.trillium.post.repo.PostRepository;
@@ -40,16 +41,16 @@ public class PostService {
     private final CommentRepository commentRepository;
 
     @Transactional
-    public PostResponse save(CreatePostDto createPostDto, MultipartFile file) {
+    public CreatePostDtoResponse save(CreatePostDto createPostDto, MultipartFile file, User loggedUser) {
         String filename = storageService.store(file);
 
-        return PostResponse.toPostResponse(
+        return CreatePostDtoResponse.toCreatePostResponse(
                 repository.save(
                         Post.builder()
+                                .author(loggedUser)
                                 .title(createPostDto.getTitle())
                                 .image(filename)
-                                .likes(new HashSet<>())
-                                .comment(new ArrayList<>())
+                                .desc(createPostDto.getDesc())
                                 .build()
                 )
         );

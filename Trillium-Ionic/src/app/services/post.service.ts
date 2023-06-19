@@ -22,7 +22,14 @@ export class PostService {
 
       likePost(id: number, headers?: HttpHeaders): Observable<unknown> {
         const options = { headers };
-        console.log(options);
         return this.http.post(`http://localhost:8080/post/like/${id}`, null, options);
+      }
+
+      createPost(title: string, description: string, image: File, headers?: HttpHeaders): Observable<unknown> {
+        const options = { headers };
+        const formData = new FormData();
+        formData.append('post', new Blob([JSON.stringify({ title, description })], { type: 'application/json' }));
+        formData.append('file', image, image.name);
+        return this.http.post('http://localhost:8080/post/post', formData, options);
       }
 }
