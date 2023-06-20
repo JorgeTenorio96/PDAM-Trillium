@@ -1,5 +1,5 @@
 <ion-card>
-  <img alt="https://ionicframework.com/docs/img/demos/card-media.png" [src]="post.image" (click)="viewPostDetails(post.id)"/>
+  <img alt="https://ionicframework.com/docs/img/demos/card-media.png" [src]="'http://localhost:8080/download/' + post.image" (click)="viewPostDetails(post.id)"/>
   <ion-card-header>
     <ion-card-title>{{post.title}}</ion-card-title>
     <ion-card-subtitle>{{post.author}}</ion-card-subtitle>
