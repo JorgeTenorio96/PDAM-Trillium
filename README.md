@@ -9,6 +9,10 @@ Para probar en la app, se han incluido los siguientes usuarios:
 * Usuario: user1, Contraseña: Password1
 * Usuario: user2, Contraseña: Password2
 
+## Cambios finales realizados
+
+* Implementación de página de creación de post, se puede acceder a ella a traves de un botón flotante en la página principal (Your Timeline) y permite subir una imagen, añadir un título y añadir una descripción. Al darle al botón de crear post te enviará de nuevo a la página de posts actualizada con el nuevo post publicado
+
 
 ## API REST con SPRING - Proyecto de AD-PSP de 2ºDAM.
 
